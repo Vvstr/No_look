@@ -1,0 +1,6 @@
+fastapi
+chromadb
+transformers
+webdriver_manager
+selenium
+pydantic
