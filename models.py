@@ -1,10 +1,13 @@
 from pydantic import BaseModel, Field
+from typing import Optional, List
 
 
 class QueryRequest(BaseModel):
-    question: str = Field(..., example="English or Spanish?")
-    top_k: Optional[int] = Field(2, example=2, description="Number of context items to retrieve.")
-    scenario: str = Field("classic", example="classic", description="RAG scenario to use: classic, scraping, combined.")
+    question: str
+    top_k: Optional[int] = Field(2)
+    scenario: str
+    url: Optional[str] = None
+    selector: Optional[str] = None
 
 
 class QueryResponse(BaseModel):
@@ -14,8 +17,8 @@ class QueryResponse(BaseModel):
 
 
 class ScrapeRequest(BaseModel):
-    url: str = Field(..., example="")
-    selector: str = Field(..., example=".policy-text")
+    url: str
+    selector: str
 
 
 class ScrapeResponse(BaseModel):
@@ -23,4 +26,4 @@ class ScrapeResponse(BaseModel):
 
 
 class ContextItem(BaseModel):
-    content: str = Field(..., example="")
+    content: str
